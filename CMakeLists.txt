@@ -9,11 +9,13 @@ project(flashid C CXX ASM)
 
 pico_sdk_init()
 
+add_subdirectory(stdinit-lib)
+
 add_executable(flashid main.c)
 
 pico_enable_stdio_uart(flashid 1)
 pico_enable_stdio_usb(flashid 0)
 
-target_link_libraries(flashid pico_stdlib hardware_flash)
+target_link_libraries(flashid stdinit-lib pico_stdlib hardware_flash)
 
 pico_add_extra_outputs(flashid)
